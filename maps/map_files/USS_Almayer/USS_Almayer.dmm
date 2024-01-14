@@ -26558,6 +26558,10 @@
 	icon_state = "test_floor4"
 	},
 /area/almayer/shipboard/brig/lobby)
+"djy" = (
+/obj/item/device/binoculars,
+/turf/open/floor/almayer,
+/area/almayer/living/bridgebunks)
 "djQ" = (
 /obj/item/device/radio/intercom{
 	freerange = 1;
@@ -100399,7 +100403,7 @@ iVy
 qnh
 aKa
 rrB
-aGr
+djy
 eDu
 tKr
 uNg

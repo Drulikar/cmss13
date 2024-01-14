@@ -378,7 +378,7 @@
 
 	stats += "[GLOB.log_end]"
 
-	WRITE_LOG(GLOB.round_stats, stats)
+	//WRITE_LOG(GLOB.round_stats, stats)
 
 /datum/action/show_round_statistics
 	name = "View End-Round Statistics"

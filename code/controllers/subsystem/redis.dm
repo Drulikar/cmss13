@@ -49,7 +49,7 @@ SUBSYSTEM_DEF(redis)
 		if(redis_cb.channel in subbed_channels)
 			stack_trace("Attempted to subscribe to the channel '[redis_cb.channel]' from [redis_cb.type] twice!")
 
-		rustg_redis_subscribe(redis_cb.channel)
+		//rustg_redis_subscribe(redis_cb.channel)
 		subbed_channels[redis_cb.channel] = redis_cb
 
 	log_debug("Registered [length(subbed_channels)] callback(s).")
@@ -76,7 +76,7 @@ SUBSYSTEM_DEF(redis)
 	if(!CONFIG_GET(flag/redis_enabled))
 		return CONFIG_DISABLED
 
-	var/connection_attempt = rustg_redis_connect(CONFIG_GET(string/redis_connection))
+	var/connection_attempt = 0//rustg_redis_connect(CONFIG_GET(string/redis_connection))
 
 	if(connection_attempt)
 		message_admins("Failed to connect to redis: [connection_attempt]")
@@ -92,7 +92,7 @@ SUBSYSTEM_DEF(redis)
 	message_admins("Note: Redis connection interrupted.")
 	var/list/data = list("source" = SSredis.instance_name, "type" = "disconnect", "reason" = reason)
 	publish("byond.meta", json_encode(data))
-	rustg_redis_disconnect()
+	//rustg_redis_disconnect()
 	connected = FALSE
 
 /datum/controller/subsystem/redis/proc/reconnect()
@@ -101,11 +101,11 @@ SUBSYSTEM_DEF(redis)
 	if(!connected)
 		return
 
-	for(var/channel in subbed_channels)
-		rustg_redis_subscribe(channel)
+	//for(var/channel in subbed_channels)
+		//rustg_redis_subscribe(channel)
 
 /datum/controller/subsystem/redis/proc/check_messages()
-	var/raw_data = rustg_redis_get_messages()
+	var/raw_data = 0//rustg_redis_get_messages()
 	var/list/usable_data
 
 	try
@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(redis)
 		return
 
 	for(var/channel in usable_data)
-		if(channel == RUSTG_REDIS_ERROR_CHANNEL)
+		if(channel == 0)//RUSTG_REDIS_ERROR_CHANNEL)
 			message_admins("Redis error: [json_encode(usable_data[channel])]")
 			continue
 
@@ -138,7 +138,7 @@ SUBSYSTEM_DEF(redis)
 		queue += redis
 		return
 
-	rustg_redis_publish(channel, message)
+	//rustg_redis_publish(channel, message)
 
 /datum/controller/subsystem/redis/CanProcCall(procname)
 	return FALSE

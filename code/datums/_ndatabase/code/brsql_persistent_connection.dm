@@ -56,7 +56,7 @@
 
 	min_threads = _min_threads
 	max_threads = _max_threads
-	var/options = list(
+	/*var/options = list(
 		"host" = ipaddress,
 		"port" = port,
 		"user" = username,
@@ -64,9 +64,9 @@
 		"db_name" = database,
 		"min_threads" = min_threads,
 		"max_threads" = max_threads,
-	)
-	connection_result = rustg_sql_connect_pool(json_encode(options))
-	connection_handle = json_decode(connection_result)["handle"]
+	)*/
+	//connection_result = rustg_sql_connect_pool(json_encode(options))
+	//connection_handle = json_decode(connection_result)["handle"]
 	if(!connection_handle)
 		status = DB_CONNECTION_BROKEN
 		return FALSE
@@ -76,7 +76,7 @@
 /datum/db/connection/brsql_connection/keep()
 	if(connection_ready())
 		return
-	if(status == DB_CONNECTION_BROKEN)
+	/*if(status == DB_CONNECTION_BROKEN)
 		var/options = list(
 			"host" = ipaddress,
 			"port" = port,
@@ -87,20 +87,20 @@
 			"max_threads" = max_threads,
 		)
 		connection_result = rustg_sql_connect_pool(json_encode(options))
-		connection_handle = json_decode(connection_result)["handle"]
+		connection_handle = json_decode(connection_result)["handle"]*/
 
 /datum/db/connection/brsql_connection/query()
 	if(connection_ready())
 		var/datum/db/query/brsql/pq = new()
-		var/query_text = args[1]
+		//var/query_text = args[1]
 		var/query_parameters = (length(args) > 1) ? args.Copy(2) : list()
 		pq.parameters = query_parameters
-		var/text = json_encode(query_parameters)
-		pq.job_id = rustg_sql_query_async(connection_handle, query_text, text)
+		//var/text = json_encode(query_parameters)
+		pq.job_id = 0//rustg_sql_query_async(connection_handle, query_text, text)
 		query_number++
 		return pq
 	return null
-	
+
 /datum/db/connection/brsql_connection/get_adapter()
 	var/datum/db/adapter/brsql_adapter/adapter = new()
 	adapter.connection = src

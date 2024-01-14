@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(influxdriver)
 	return ..()
 
 /datum/controller/subsystem/influxdriver/proc/unix_timestamp_string() // pending change to rust-g
-	return RUSTG_CALL(RUST_G, "unix_timestamp")()
+	return 0//RUSTG_CALL(RUST_G, "unix_timestamp")()
 
 /datum/controller/subsystem/influxdriver/proc/update_timestamp()
 	PRIVATE_PROC(TRUE)
@@ -62,18 +62,18 @@ SUBSYSTEM_DEF(influxdriver)
 	if(!length(queue))
 		return // Nothing to do
 
-	var/url = "[host]/api/v2/write?org=[org]&bucket=[bucket]&precision=us" // microseconds
+	//var/url = "[host]/api/v2/write?org=[org]&bucket=[bucket]&precision=us" // microseconds
 	var/list/headers = list()
 	headers["Authorization"] = "Token [token]"
 	headers["Content-Type"] = "text/plain; charset=utf-8"
 	headers["Accept"] = "application/json"
 
-	var/datum/http_request/request = new
+	//var/datum/http_request/request = new
 	var/payload = ""
 	for(var/line in queue)
 		payload += "[line]\n"
-	request.prepare(RUSTG_HTTP_METHOD_POST, url, payload, headers)
-	request.begin_async()
+	//request.prepare(RUSTG_HTTP_METHOD_POST, url, payload, headers)
+	//request.begin_async()
 	// TODO possibly check back result of request later
 
 /// Enqueues sending to InfluxDB Backend selected measurement values - round_id and timestamp are filled in automatically

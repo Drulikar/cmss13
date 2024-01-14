@@ -37,8 +37,8 @@
 /proc/auxtools_expr_stub()
 	CRASH("auxtools not loaded")
 
-/world/Del()
+/*/world/Del()
 	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
 	if (debug_server)
 		LIBCALL(debug_server, "auxtools_shutdown")()
-	. = ..()
+	. = ..()*/

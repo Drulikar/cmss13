@@ -112,8 +112,8 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 		return
 
 	//Logs all other hrefs
-	if(CONFIG_GET(flag/log_hrefs) && GLOB.world_href_log)
-		WRITE_LOG(GLOB.world_href_log, "<small>[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>")
+	//if(CONFIG_GET(flag/log_hrefs) && GLOB.world_href_log)
+		//WRITE_LOG(GLOB.world_href_log, "<small>[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>")
 
 	if(href_list["reload_tguipanel"])
 		nuke_chat()

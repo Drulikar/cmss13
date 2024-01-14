@@ -12,10 +12,10 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 	hub = "Exadv1.spacestation13"
 
 /world/New()
-	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
+	/*var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
 	if (debug_server)
 		LIBCALL(debug_server, "auxtools_init")()
-		enable_debugging()
+		enable_debugging()*/
 	hub_password = "kMZy3U5jJHSiBQjr"
 
 #ifdef BYOND_TRACY
@@ -164,7 +164,7 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 		response["response"] = "Payload too large"
 		return json_encode(response)
 
-	var/logging = CONFIG_GET(flag/log_world_topic)
+	/*var/logging = CONFIG_GET(flag/log_world_topic)
 	var/topic_decoded = rustg_url_decode(T)
 	if(!rustg_json_is_valid(topic_decoded))
 		if(logging)
@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 		response["statuscode"] = command.statuscode
 		response["response"] = command.response
 		response["data"] = command.data
-		return json_encode(response)
+		return json_encode(response)*/
 
 /world/Reboot(reason)
 	Master.Shutdown()
@@ -329,7 +329,7 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
  * byond-tracy is a useful profiling tool that allows the user to view the CPU usage and execution time of procs as they run.
 */
 /world/proc/prof_init()
-	var/lib
+	/*var/lib
 
 	switch(world.system_type)
 		if(MS_WINDOWS)
@@ -341,7 +341,7 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 
 	var/init = LIBCALL(lib, "init")()
 	if("0" != init)
-		CRASH("[lib] init error: [init]")
+		CRASH("[lib] init error: [init]")*/
 
 /world/proc/HandleTestRun()
 	// Wait for the game ticker to initialize

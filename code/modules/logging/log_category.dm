@@ -15,7 +15,7 @@
 /datum/log_category/proc/add_entry(message, list/data)
 	var/list/entry = list(
 		LOG_ENTRY_MESSAGE = message,
-		LOG_ENTRY_TIMESTAMP = big_number_to_text(rustg_unix_timestamp()),
+		//LOG_ENTRY_TIMESTAMP = big_number_to_text(rustg_unix_timestamp()),
 	)
 	if(data)
 		entry[LOG_ENTRY_DATA] = data
@@ -29,4 +29,4 @@
 
 /// Writes an entry to the output file for the category
 /datum/log_category/proc/write_entry(list/entry)
-	rustg_file_append("[json_encode(entry)]\n", get_output_file(entry))
+	//rustg_file_append("[json_encode(entry)]\n", get_output_file(entry))

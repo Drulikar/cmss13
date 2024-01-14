@@ -25,11 +25,11 @@
 */
 
 // 515 split call for external libraries into call_ext
-#if DM_VERSION < 515
+/*#if DM_VERSION < 515
 #define LIBCALL call
 #else
 #define LIBCALL call_ext
-#endif
+#endif*/
 
 // So we want to have compile time guarantees these methods exist on local type, unfortunately 515 killed the .proc/procname and .verb/verbname syntax so we have to use nameof()
 // For the record: GLOBAL_VERB_REF would be useless as verbs can't be global.

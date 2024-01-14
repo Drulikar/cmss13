@@ -29,12 +29,13 @@
 /datum/db/query/brsql/read_single()
 	if(status >= DB_QUERY_FINISHED) //broken or finished
 		return
-	
+
 	status = DB_QUERY_STARTED
-	var/job_result = rustg_sql_check_query(job_id)
+	return
+	/*var/job_result = rustg_sql_check_query(job_id)
 	if(job_result == RUSTG_JOB_NO_RESULTS_YET)
 		return
-	
+
 	var/result = json_decode(job_result)
 	switch(result["status"])
 		if("ok")
@@ -62,4 +63,4 @@
 		if("offline")
 			error = "CONNECTION OFFLINE"
 			status = DB_QUERY_BROKEN
-			return
+			return*/

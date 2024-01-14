@@ -25,8 +25,8 @@
 #define WRITE_FILE(file, text) DIRECT_OUTPUT(file, text)
 
 //This is an external call, "true" and "false" are how rust parses out booleans
-#define WRITE_LOG(log, text) rustg_log_write(log, text, "true")
-#define WRITE_LOG_NO_FORMAT(log, text) rustg_log_write(log, text, "false")
+//#define WRITE_LOG(log, text) rustg_log_write(log, text, "true")
+//#define //WRITE_LOG_NO_FORMAT(log, text) rustg_log_write(log, text, "false")
 
 //print an error message to world.log
 
@@ -57,7 +57,7 @@ GLOBAL_VAR_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "")
 	var/time = time_stamp()
 	GLOB.admin_log.Add(text)
 	if (CONFIG_GET(flag/log_admin))
-		WRITE_LOG(GLOB.world_game_log, "ADMIN: [text]")
+		//WRITE_LOG(GLOB.world_game_log, "ADMIN: [text]")
 		LOG_REDIS("admin", "\[[time]\] [text]")
 	GLOB.STUI.admin.Add("\[[time]]ADMIN: [text]")
 	GLOB.STUI.processing |= STUI_LOG_ADMIN
@@ -66,13 +66,13 @@ GLOBAL_VAR_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "")
 	GLOB.asset_log.Add(text)
 	if (CONFIG_GET(flag/log_asset))
 		var/time = time_stamp()
-		WRITE_LOG(GLOB.world_game_log, "ASSET: [text]")
+		//WRITE_LOG(GLOB.world_game_log, "ASSET: [text]")
 		LOG_REDIS("asset", "\[[time]\] [text]")
 
 /proc/log_adminpm(text)
 	GLOB.admin_log.Add(text)
-	if (CONFIG_GET(flag/log_admin))
-		WRITE_LOG(GLOB.world_game_log, "ADMIN: [text]")
+	//if (CONFIG_GET(flag/log_admin))
+		//WRITE_LOG(GLOB.world_game_log, "ADMIN: [text]")
 	GLOB.STUI.staff.Add("\[[time_stamp()]]ADMIN: [text]")
 	GLOB.STUI.processing |= STUI_LOG_STAFF_CHAT
 
@@ -82,7 +82,7 @@ GLOBAL_VAR_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "")
 /proc/log_debug(text, diary_only=FALSE)
 	var/time = time_stamp()
 	if (CONFIG_GET(flag/log_debug))
-		WRITE_LOG(GLOB.world_game_log, "DEBUG: [text]")
+		//WRITE_LOG(GLOB.world_game_log, "DEBUG: [text]")
 		LOG_REDIS("debug", "\[[time]\] [text]")
 
 	if(diary_only)
@@ -98,7 +98,7 @@ GLOBAL_VAR_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "")
 /proc/log_game(text)
 	var/time = time_stamp()
 	if (CONFIG_GET(flag/log_game))
-		WRITE_LOG(GLOB.world_game_log, "GAME: [text]")
+		//WRITE_LOG(GLOB.world_game_log, "GAME: [text]")
 		LOG_REDIS("game", "\[[time]\] [text]")
 	GLOB.STUI.admin.Add("\[[time]]GAME: [text]")
 	GLOB.STUI.processing |= STUI_LOG_ADMIN
@@ -106,7 +106,7 @@ GLOBAL_VAR_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "")
 /proc/log_interact(mob/living/carbon/origin, mob/living/carbon/target, msg)
 	var/time = time_stamp()
 	if (CONFIG_GET(flag/log_interact))
-		WRITE_LOG(GLOB.world_game_log, "INTERACT: [msg]")
+		//WRITE_LOG(GLOB.world_game_log, "INTERACT: [msg]")
 		LOG_REDIS("interact", "\[[time]\] [msg]")
 	if(origin)
 		origin.attack_log += "\[[time]\]<font color='green'> [msg] </font>"
@@ -120,7 +120,7 @@ GLOBAL_VAR_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "")
 /proc/log_overwatch(text)
 	var/time = time_stamp()
 	if (CONFIG_GET(flag/log_overwatch))
-		WRITE_LOG(GLOB.world_game_log, "OVERWATCH: [text]")
+		//WRITE_LOG(GLOB.world_game_log, "OVERWATCH: [text]")
 		LOG_REDIS("overwatch", "\[[time]\] [text]")
 	GLOB.STUI.admin.Add("\[[time]]OVERWATCH: [text]")
 	GLOB.STUI.processing |= STUI_LOG_ADMIN
@@ -128,21 +128,21 @@ GLOBAL_VAR_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "")
 /proc/log_idmod(obj/item/card/id/target_id, msg)
 	var/time = time_stamp()
 	if (CONFIG_GET(flag/log_idmod))
-		WRITE_LOG(GLOB.world_game_log, "ID MOD: [msg]")
+		//WRITE_LOG(GLOB.world_game_log, "ID MOD: [msg]")
 		LOG_REDIS("idmod", "\[[time]\] [msg]")
 	target_id.modification_log += "\[[time]]: [msg]"
 
 /proc/log_vote(text)
 	var/time = time_stamp()
 	if (CONFIG_GET(flag/log_vote))
-		WRITE_LOG(GLOB.world_game_log, "VOTE: [text]")
+		//WRITE_LOG(GLOB.world_game_log, "VOTE: [text]")
 		LOG_REDIS("vote", "\[[time]\] [text]")
 
 
 /proc/log_access(text)
 	var/time = time_stamp()
 	if (CONFIG_GET(flag/log_access))
-		WRITE_LOG(GLOB.world_game_log, "ACCESS: [text]")
+		//WRITE_LOG(GLOB.world_game_log, "ACCESS: [text]")
 		LOG_REDIS("access", "\[[time]\] [text]")
 	GLOB.STUI.debug.Add("\[[time]]ACCESS: [text]")
 	GLOB.STUI.processing |= STUI_LOG_DEBUG
@@ -150,7 +150,7 @@ GLOBAL_VAR_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "")
 /proc/log_say(text)
 	var/time = time_stamp()
 	if (CONFIG_GET(flag/log_say))
-		WRITE_LOG(GLOB.world_game_log, "SAY: [text]")
+		//WRITE_LOG(GLOB.world_game_log, "SAY: [text]")
 		LOG_REDIS("say", "\[[time]\] [text]")
 	GLOB.STUI.game.Add("\[[time]]SAY: [text]")
 	GLOB.STUI.processing |= STUI_LOG_GAME_CHAT
@@ -158,7 +158,7 @@ GLOBAL_VAR_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "")
 /proc/log_hivemind(text)
 	var/time = time_stamp()
 	if (CONFIG_GET(flag/log_hivemind))
-		WRITE_LOG(GLOB.world_game_log, "HIVEMIND: [text]")
+		//WRITE_LOG(GLOB.world_game_log, "HIVEMIND: [text]")
 		LOG_REDIS("hivemind", "\[[time]\] [text]")
 	GLOB.STUI.game.Add("\[[time]]HIVEMIND: [text]")
 	GLOB.STUI.processing |= STUI_LOG_GAME_CHAT
@@ -167,13 +167,13 @@ GLOBAL_VAR_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "")
 	var/time = time_stamp()
 	if (CONFIG_GET(flag/log_ooc))
 		LOG_REDIS("ooc", "\[[time]\] [text]")
-		WRITE_LOG(GLOB.world_game_log, "OOC: [text]")
+		//WRITE_LOG(GLOB.world_game_log, "OOC: [text]")
 
 /proc/log_whisper(text)
 	var/time = time_stamp()
 	if (CONFIG_GET(flag/log_whisper))
 		LOG_REDIS("whisper", "\[[time]\] [text]")
-		WRITE_LOG(GLOB.world_game_log, "WHISPER: [text]")
+		//WRITE_LOG(GLOB.world_game_log, "WHISPER: [text]")
 	GLOB.STUI.game.Add("\[[time]]WHISPER: [text]")
 	GLOB.STUI.processing |= STUI_LOG_GAME_CHAT
 
@@ -181,7 +181,7 @@ GLOBAL_VAR_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "")
 	var/time = time_stamp()
 	if (CONFIG_GET(flag/log_emote))
 		LOG_REDIS("emote", "\[[time]\] [text]")
-		WRITE_LOG(GLOB.world_game_log, "EMOTE: [text]")
+		//WRITE_LOG(GLOB.world_game_log, "EMOTE: [text]")
 	GLOB.STUI.game.Add("\[[time]]<font color='#999999'>EMOTE: [text]</font>")
 	GLOB.STUI.processing |= STUI_LOG_GAME_CHAT
 
@@ -189,57 +189,57 @@ GLOBAL_VAR_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "")
 	var/time = time_stamp()
 	if (CONFIG_GET(flag/log_attack))
 		LOG_REDIS("attack", "\[[time]\] [text]")
-		WRITE_LOG(GLOB.world_attack_log, "ATTACK: [text]")
+		//WRITE_LOG(GLOB.world_attack_log, "ATTACK: [text]")
 	GLOB.STUI.attack.Add("\[[time]]ATTACK: [text]")
 	GLOB.STUI.processing |= STUI_LOG_ATTACK
 
 /proc/log_adminsay(text)
-	if (CONFIG_GET(flag/log_adminchat))
-		WRITE_LOG(GLOB.world_game_log, "ADMINSAY: [text]")
+	//if (CONFIG_GET(flag/log_adminchat))
+		//WRITE_LOG(GLOB.world_game_log, "ADMINSAY: [text]")
 
 /proc/log_adminwarn(text)
-	if (CONFIG_GET(flag/log_adminwarn))
-		WRITE_LOG(GLOB.world_game_log, "ADMINWARN: [text]")
+	//if (CONFIG_GET(flag/log_adminwarn))
+		//WRITE_LOG(GLOB.world_game_log, "ADMINWARN: [text]")
 	GLOB.STUI.admin.Add("\[[time_stamp()]]ADMIN: [text]")
 	GLOB.STUI.processing |= STUI_LOG_ADMIN
 
 /proc/log_misc(text)
 	var/time = time_stamp()
 	LOG_REDIS("misc", "\[[time]\] [text]")
-	WRITE_LOG(GLOB.world_game_log, "MISC: [text]")
+	//WRITE_LOG(GLOB.world_game_log, "MISC: [text]")
 	GLOB.STUI?.debug.Add("\[[time]]MISC: [text]")
 
 /proc/log_mutator(text)
 	if(!GLOB.mutator_logs)
 		return
-	WRITE_LOG(GLOB.mutator_logs, "[text]")
+	//WRITE_LOG(GLOB.mutator_logs, "[text]")
 
 /proc/log_hiveorder(text)
 	var/time = time_stamp()
 	LOG_REDIS("hiveorder", "\[[time]\] [text]")
-	WRITE_LOG(GLOB.world_game_log, "HIVE ORDER: [text]")
+	//WRITE_LOG(GLOB.world_game_log, "HIVE ORDER: [text]")
 	GLOB.STUI.debug.Add("\[[time]]HIVE ORDER: [text]")
 
 /proc/log_announcement(text)
 	var/time = time_stamp()
 	LOG_REDIS("announcement", "\[[time]\] [text]")
-	WRITE_LOG(GLOB.world_game_log, "ANNOUNCEMENT: [text]")
+	//WRITE_LOG(GLOB.world_game_log, "ANNOUNCEMENT: [text]")
 	GLOB.STUI.admin.Add("\[[time]]ANNOUNCEMENT: [text]")
 
 /proc/log_mhelp(text)
 	var/time = time_stamp()
 	LOG_REDIS("mhelp", "\[[time]\] [text]")
-	WRITE_LOG(GLOB.world_game_log, "MENTORHELP: [text]")
+	//WRITE_LOG(GLOB.world_game_log, "MENTORHELP: [text]")
 	GLOB.STUI.admin.Add("\[[time]]MENTORHELP: [text]")
 
 /// Logging for game performance
 /proc/log_perf(list/perf_info)
 	. = "[perf_info.Join(",")]\n"
-	WRITE_LOG_NO_FORMAT(GLOB.perf_log, .)
+	//WRITE_LOG_NO_FORMAT(GLOB.perf_log, .)
 
 /* Log to the logfile only. */
 /proc/log_runtime(text)
-	WRITE_LOG(GLOB.world_runtime_log, text)
+	//WRITE_LOG(GLOB.world_runtime_log, text)
 
 /**
  * Appends a tgui-related log entry. All arguments are optional.
@@ -271,19 +271,19 @@ GLOBAL_VAR_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "")
 	// Insert message
 	if(message)
 		entry += "\n[message]"
-	WRITE_LOG(GLOB.tgui_log, entry)
+	//WRITE_LOG(GLOB.tgui_log, entry)
 	GLOB.STUI.tgui.Add("\[[time_stamp()]]TGUI: [entry]")
 	GLOB.STUI.processing |= STUI_LOG_TGUI
 
 /proc/log_topic(text)
-	WRITE_LOG(GLOB.world_game_log, "TOPIC: [text]")
+	//WRITE_LOG(GLOB.world_game_log, "TOPIC: [text]")
 
 GLOBAL_VAR(config_error_log)
 GLOBAL_PROTECT(config_error_log)
 
 /* Rarely gets called; just here in case the config breaks. */
 /proc/log_config(text)
-	WRITE_LOG(GLOB.config_error_log, text)
+	//WRITE_LOG(GLOB.config_error_log, text)
 	SEND_TEXT(world.log, text)
 
 /proc/log_admin_private(text)
@@ -291,7 +291,7 @@ GLOBAL_PROTECT(config_error_log)
 
 #if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
 /proc/log_test(text)
-	WRITE_LOG(GLOB.test_log, text)
+	//WRITE_LOG(GLOB.test_log, text)
 	SEND_TEXT(world.log, text)
 #endif
 
@@ -299,7 +299,7 @@ GLOBAL_PROTECT(config_error_log)
 #define log_reftracker(msg) log_harddel("## REF SEARCH [msg]")
 
 /proc/log_harddel(text)
-	WRITE_LOG(GLOB.harddel_log, text)
+	//WRITE_LOG(GLOB.harddel_log, text)
 
 #elif defined(REFERENCE_TRACKING) // Doing it locally
 #define log_reftracker(msg) log_world("## REF SEARCH [msg]")
@@ -309,8 +309,8 @@ GLOBAL_PROTECT(config_error_log)
 #endif
 
 /proc/start_log(log)
-	WRITE_LOG(log, "Starting up round ID [GLOB.round_id]\n-------------------------)")
+	//WRITE_LOG(log, "Starting up round ID [GLOB.round_id]\n-------------------------)")
 
 /proc/shutdown_logging()
-	rustg_log_close_all()
+	//rustg_log_close_all()
 	GLOB.logger.shutdown_logging()
