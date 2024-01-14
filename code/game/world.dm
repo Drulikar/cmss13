@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 
 	init_global_referenced_datums()
 
-	var/testing_locally = (world.params && world.params["local_test"])
+	var/testing_locally = TRUE//(world.params && world.params["local_test"])
 	var/running_tests = (world.params && world.params["run_tests"])
 	#if defined(AUTOWIKI) || defined(UNIT_TESTS)
 	running_tests = TRUE
