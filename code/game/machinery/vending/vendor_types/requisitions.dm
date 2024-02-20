@@ -179,6 +179,14 @@
 	vend_dir = WEST
 	vend_dir_whitelist = list(NORTH, SOUTH)
 
+/obj/structure/machinery/cm_vending/sorted/cargo_guns/cargo/Initialize()
+	. = ..()
+	GLOB.req_vendors |= src
+
+/obj/structure/machinery/cm_vending/sorted/cargo_guns/cargo/Destroy()
+	GLOB.req_vendors -= src
+	return ..()
+
 /obj/structure/machinery/cm_vending/sorted/cargo_guns/cargo/blend
 	icon_state = "req_guns_wall"
 	tiles_with = list(
@@ -298,6 +306,14 @@
 /obj/structure/machinery/cm_vending/sorted/cargo_ammo/cargo
 	vend_flags = VEND_CLUTTER_PROTECTION | VEND_LIMITED_INVENTORY | VEND_LOAD_AMMO_BOXES | VEND_STOCK_DYNAMIC //We want to vend to turf not hand, since we are in requisitions
 
+/obj/structure/machinery/cm_vending/sorted/cargo_ammo/cargo/Initialize()
+	. = ..()
+	GLOB.req_vendors |= src
+
+/obj/structure/machinery/cm_vending/sorted/cargo_ammo/cargo/Destroy()
+	GLOB.req_vendors -= src
+	return ..()
+
 //------------ATTACHMENTS VENDOR---------------
 
 /obj/structure/machinery/cm_vending/sorted/attachments
@@ -364,6 +380,14 @@
 		/obj/structure/machinery/door/airlock,
 		/turf/closed/wall/almayer,
 	)
+
+/obj/structure/machinery/cm_vending/sorted/attachments/blend/Initialize()
+	. = ..()
+	GLOB.req_vendors |= src
+
+/obj/structure/machinery/cm_vending/sorted/attachments/blend/Destroy()
+	GLOB.req_vendors -= src
+	return ..()
 
 //------------UNIFORM VENDOR---------------
 
