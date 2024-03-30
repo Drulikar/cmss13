@@ -79,8 +79,8 @@ SUBSYSTEM_DEF(nightmare)
 	contexts[context_name] = CTX
 	CTX.config["prefix_map"] = "maps/[MC.map_path]"
 	CTX.config["prefix_nightmare"] = MC.nightmare_path
-	load_file("[MC.nightmare_path]/[NIGHTMARE_FILE_SCENARIO]", "[context_name]-[NIGHTMARE_ACT_SCENARIO]")
-	load_file("[MC.nightmare_path]/[NIGHTMARE_FILE_BASE]", "[context_name]-[NIGHTMARE_ACT_BASE]")
+	//load_file("[MC.nightmare_path]/[NIGHTMARE_FILE_SCENARIO]", "[context_name]-[NIGHTMARE_ACT_SCENARIO]")
+	//load_file("[MC.nightmare_path]/[NIGHTMARE_FILE_BASE]", "[context_name]-[NIGHTMARE_ACT_BASE]")
 	log_debug("Nightmare: Loaded map environment {[context_name],[map_type]}")
 
 /// Returns a value from the global scenario
