@@ -19,8 +19,8 @@ SUBSYSTEM_DEF(nightmare)
 		var/datum/nmcontext/CTX = new /datum/nmcontext
 		contexts[NIGHTMARE_CTX_GLOBAL] = CTX
 		CTX.config["prefix_nightmare"] = global_nightmare_path
-		load_file("[global_nightmare_path]/[NIGHTMARE_FILE_SCENARIO]", "[NIGHTMARE_CTX_GLOBAL]-[NIGHTMARE_ACT_SCENARIO]")
-		load_file("[global_nightmare_path]/[NIGHTMARE_FILE_BASE]", "[NIGHTMARE_CTX_GLOBAL]-[NIGHTMARE_ACT_BASE]")
+		//load_file("[global_nightmare_path]/[NIGHTMARE_FILE_SCENARIO]", "[NIGHTMARE_CTX_GLOBAL]-[NIGHTMARE_ACT_SCENARIO]")
+		//load_file("[global_nightmare_path]/[NIGHTMARE_FILE_BASE]", "[NIGHTMARE_CTX_GLOBAL]-[NIGHTMARE_ACT_BASE]")
 	load_map_config(NIGHTMARE_CTX_GROUND, GROUND_MAP)
 	load_map_config(NIGHTMARE_CTX_SHIP, SHIP_MAP)
 	for(var/context_name in contexts)
