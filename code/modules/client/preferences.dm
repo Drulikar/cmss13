@@ -169,7 +169,7 @@ GLOBAL_LIST_INIT(bgstate_options, list(
 	var/icon/preview_icon_side = null
 
 		//Jobs, uses bitflags
-	var/list/job_preference_list = list(JOB_CO = HIGH_PRIORITY)
+	var/list/job_preference_list = list(JOB_SQUAD_SPECIALIST = HIGH_PRIORITY)
 
 	//Keeps track of preferrence for not getting any wanted jobs
 	var/alternate_option = RETURN_TO_LOBBY //Be a marine.
