@@ -288,8 +288,8 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine(new_human), WEAR_BODY)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/M35(new_human), WEAR_JACKET)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/large_holster/fuelpack(new_human), WEAR_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/flamer/M240T(new_human), WEAR_R_HAND)
-	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(new_human), WEAR_L_HAND)
+	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/flamer/M240T(new_human), WEAR_IN_SCABBARD)
+	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(new_human), WEAR_J_STORE)
 
 /datum/equipment_preset/uscm/spec/cryo
 	name = "USCM Cryo Squad Weapons Specialist"
