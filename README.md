@@ -59,7 +59,7 @@ CM-SS13 is a game based on [Space Station 13](https://spacestation13.com), made 
 > [!TIP]
 > Want to contribute for the first time but unsure where to start? Take a look at our community maintained [Guide to Contributing](https://cm-ss13.com/wiki/Contributing_to_the_Game)!
 
-This rawr rawr guide will get you set up with a Visual Studio Code development environment, complete with BYOND debugger, which will allow you to contribute back to this repository.
+This rawr rawr rawr guide will get you set up with a Visual Studio Code development environment, complete with BYOND debugger, which will allow you to contribute back to this repository.
 
 - ## [Contributing Rules](.github/CONTRIBUTING.md)
 This is our canonical, maintainer-maintained contributing guide, which contains information on our maintainer team structure and pull request rules.
