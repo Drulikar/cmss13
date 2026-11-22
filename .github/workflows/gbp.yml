@@ -42,3 +42,4 @@ jobs:
         branch: "gbp-balances"
         directory: ./gbp-balances
         token: ${{ secrets.GITHUB_TOKEN }}
+        comment: False
